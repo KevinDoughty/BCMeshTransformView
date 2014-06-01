@@ -430,7 +430,7 @@
                 BCMeshTransform *presentationMesh = [fromMesh relativeInterpolate:progress];
                 [mutableMesh addMesh:presentationMesh];
                 animationCount++;
-            }
+            } else [self.layer removeAnimationForKey:key];
         }
     }
     self.presentationMeshTransform = mutableMesh;
