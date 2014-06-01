@@ -365,10 +365,13 @@
 }
 
 
+
+
+// The following was added by Kevin Doughty:
 #pragma mark - Relative
 
 -(NSString*)relativeAnimationKey {
-    return @"underlyingMeshAnimation";
+    return @"relativeMeshAnimation";
 }
 
 - (void)setMeshTransform:(BCMeshTransform *)meshTransform {
