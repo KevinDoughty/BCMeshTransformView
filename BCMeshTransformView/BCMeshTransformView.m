@@ -18,6 +18,10 @@
 
 #import "BCMutableMeshTransform+Convenience.h"
 
+#import "RelativeMeshTransformAnimation.h"
+#import "BCMutableMeshTransform+Relative.h"
+#import "BCMeshTransform+Relative.h"
+
 @interface BCMeshTransformView() <GLKViewDelegate>
 
 @property (nonatomic, strong) GLKView *glkView;
@@ -126,7 +130,7 @@
 
 #pragma mark - Setters
 
-- (void)setMeshTransform:(BCMeshTransform *)meshTransform
+- (void)ORIGINALsetMeshTransform:(BCMeshTransform *)meshTransform
 {
     // If we're inside an animation block, then we change properties of
     // a dummy animation layer so that it gets the same animation context.
@@ -212,7 +216,7 @@
 
 #pragma mark - Animation Handling
 
-- (void)displayLinkTick:(CADisplayLink *)displayLink
+- (void)ORIGINALdisplayLinkTick:(CADisplayLink *)displayLink
 {
     [self.animation tick:displayLink.duration];
     
@@ -358,6 +362,79 @@
 {
     [super addSubview:view];
     NSLog(@"Warning: do not add a subview directly to BCMeshTransformView. Add it to contentView instead.");
+}
+
+
+#pragma mark - Relative
+
+-(NSString*)relativeAnimationKey {
+    return @"underlyingMeshAnimation";
+}
+
+- (void)setMeshTransform:(BCMeshTransform *)meshTransform {
+    
+    [CATransaction begin];
+    CABasicAnimation *underlyingMeshAnimation = [CABasicAnimation animation];
+    underlyingMeshAnimation.fromValue = meshTransform;
+    underlyingMeshAnimation.toValue = meshTransform;
+    underlyingMeshAnimation.removedOnCompletion = NO;
+    [self.layer addAnimation:underlyingMeshAnimation forKey:[self relativeAnimationKey]];
+    
+    if (_meshTransform.vertexCount == meshTransform.vertexCount) {
+        [self.layer setValue:meshTransform forKey:@"hyperMeshTransform"];
+        RelativeMeshTransformAnimation *anim = [RelativeMeshTransformAnimation animation];
+        anim.duration = 1.5;
+        BCMutableMeshTransform *fromMesh = _meshTransform.mutableCopy;
+        [fromMesh subtractMesh:meshTransform];
+        anim.fromValue = fromMesh;
+        anim.timingBlock = ^(double progress) {
+            double omega = 20.0;
+            double zeta = 0.25;
+            double beta = sqrt(1.0 - zeta * zeta);
+            progress = 1.0 / beta * expf(-zeta * omega * progress) * sinf(beta * omega * progress + atanf(beta / zeta));
+            return 1-progress;
+        };
+        static NSUInteger animationCount = 0;
+        NSString *animKey = [NSString stringWithFormat:@"hyperMeshTransform_%lu",animationCount++];
+        [self.layer addAnimation:anim forKey:animKey]; // maybe the animation isn't getting added before display link tick, perhaps because of transaction?
+        self.displayLink.paused = NO;
+    } else self.presentationMeshTransform = meshTransform;
+    
+    _meshTransform = [meshTransform copy];
+    [CATransaction commit];
+}
+
+- (void)displayLinkTick:(CADisplayLink *)displayLink {
+    
+    NSArray *keys = [self.layer animationKeys];
+    NSUInteger animationCount = 0;
+    double now = CACurrentMediaTime();
+    
+    CABasicAnimation *underlyingMesh = (CABasicAnimation*)[self.layer animationForKey:[self relativeAnimationKey]];
+    BCMeshTransform *immutableMesh = (BCMeshTransform*)underlyingMesh.toValue;
+    BCMutableMeshTransform *mutableMesh = immutableMesh.mutableCopy;
+    
+    for (NSString *key in keys) {
+        CAAnimation *anim = [self.layer animationForKey:key];
+        if ([anim isKindOfClass:[RelativeMeshTransformAnimation class]]) {
+            RelativeMeshTransformAnimation *relative = (RelativeMeshTransformAnimation*)anim;
+            double duration = relative.duration;
+            double start = relative.beginTime;
+            double elapsed = (now - start) / duration;
+            if (elapsed < 1.0) {
+                double progress = elapsed;
+                if (relative.timingBlock != nil) {
+                    progress = relative.timingBlock(elapsed);
+                }
+                BCMeshTransform *fromMesh = [relative fromValue];
+                BCMeshTransform *presentationMesh = [fromMesh relativeInterpolate:progress];
+                [mutableMesh addMesh:presentationMesh];
+                animationCount++;
+            }
+        }
+    }
+    self.presentationMeshTransform = mutableMesh;
+    if (animationCount == 0) self.displayLink.paused = YES;
 }
 
 @end

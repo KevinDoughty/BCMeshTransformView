@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A37D16D193B714900B49F18 /* RelativeMeshTransformAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A37D167193B714900B49F18 /* RelativeMeshTransformAnimation.m */; };
+		0A37D16E193B714900B49F18 /* BCMutableMeshTransform+Relative.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A37D169193B714900B49F18 /* BCMutableMeshTransform+Relative.m */; };
+		0A37D16F193B714900B49F18 /* BCMeshTransform+Relative.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A37D16B193B714900B49F18 /* BCMeshTransform+Relative.m */; };
 		9819A5DA1920020400769705 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9819A5D91920020400769705 /* Foundation.framework */; };
 		9819A5DC1920020400769705 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9819A5DB1920020400769705 /* CoreGraphics.framework */; };
 		9819A5DE1920020400769705 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9819A5DD1920020400769705 /* UIKit.framework */; };
@@ -36,6 +39,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A37D166193B714900B49F18 /* RelativeMeshTransformAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeMeshTransformAnimation.h; sourceTree = "<group>"; };
+		0A37D167193B714900B49F18 /* RelativeMeshTransformAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeMeshTransformAnimation.m; sourceTree = "<group>"; };
+		0A37D168193B714900B49F18 /* BCMutableMeshTransform+Relative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BCMutableMeshTransform+Relative.h"; sourceTree = "<group>"; };
+		0A37D169193B714900B49F18 /* BCMutableMeshTransform+Relative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BCMutableMeshTransform+Relative.m"; sourceTree = "<group>"; };
+		0A37D16A193B714900B49F18 /* BCMeshTransform+Relative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BCMeshTransform+Relative.h"; sourceTree = "<group>"; };
+		0A37D16B193B714900B49F18 /* BCMeshTransform+Relative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BCMeshTransform+Relative.m"; sourceTree = "<group>"; };
 		9819A5D61920020400769705 /* BCMeshTransformViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BCMeshTransformViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9819A5D91920020400769705 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9819A5DB1920020400769705 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -65,8 +74,8 @@
 		9819A6271920058300769705 /* BCMeshTransform+Interpolation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BCMeshTransform+Interpolation.m"; sourceTree = "<group>"; };
 		9819A6281920058300769705 /* BCMeshTransformAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMeshTransformAnimation.h; sourceTree = "<group>"; };
 		9819A6291920058300769705 /* BCMeshTransformAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMeshTransformAnimation.m; sourceTree = "<group>"; };
-		9819A62A1920058300769705 /* BCMeshTransformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMeshTransformView.h; sourceTree = "<group>"; };
-		9819A62B1920058300769705 /* BCMeshTransformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMeshTransformView.m; sourceTree = "<group>"; };
+		9819A62A1920058300769705 /* BCMeshTransformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCMeshTransformView.h; path = ../../BCMeshTransformView/BCMeshTransformView.h; sourceTree = "<group>"; };
+		9819A62B1920058300769705 /* BCMeshTransformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCMeshTransformView.m; path = ../../BCMeshTransformView/BCMeshTransformView.m; sourceTree = "<group>"; };
 		9819A62C1920058300769705 /* BCMutableMeshTransform+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BCMutableMeshTransform+Convenience.h"; sourceTree = "<group>"; };
 		9819A62D1920058300769705 /* BCMutableMeshTransform+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BCMutableMeshTransform+Convenience.m"; sourceTree = "<group>"; };
 		9819A639192005FC00769705 /* BCZoomDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCZoomDemoViewController.h; sourceTree = "<group>"; };
@@ -99,6 +108,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A37D163193B713F00B49F18 /* Relative */ = {
+			isa = PBXGroup;
+			children = (
+				9819A62A1920058300769705 /* BCMeshTransformView.h */,
+				9819A62B1920058300769705 /* BCMeshTransformView.m */,
+				0A37D166193B714900B49F18 /* RelativeMeshTransformAnimation.h */,
+				0A37D167193B714900B49F18 /* RelativeMeshTransformAnimation.m */,
+				0A37D168193B714900B49F18 /* BCMutableMeshTransform+Relative.h */,
+				0A37D169193B714900B49F18 /* BCMutableMeshTransform+Relative.m */,
+				0A37D16A193B714900B49F18 /* BCMeshTransform+Relative.h */,
+				0A37D16B193B714900B49F18 /* BCMeshTransform+Relative.m */,
+			);
+			name = Relative;
+			sourceTree = "<group>";
+		};
 		9819A5CD1920020400769705 = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +155,7 @@
 		9819A5DF1920020400769705 /* BCMeshTransformViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				0A37D163193B713F00B49F18 /* Relative */,
 				9819A6191920054300769705 /* BCMeshTransformView */,
 				9819A64A19200E7000769705 /* Demo View Controllers */,
 				9819A5E81920020400769705 /* BCAppDelegate.h */,
@@ -176,8 +201,6 @@
 				9819A6271920058300769705 /* BCMeshTransform+Interpolation.m */,
 				9819A6291920058300769705 /* BCMeshTransformAnimation.m */,
 				9819A6281920058300769705 /* BCMeshTransformAnimation.h */,
-				9819A62A1920058300769705 /* BCMeshTransformView.h */,
-				9819A62B1920058300769705 /* BCMeshTransformView.m */,
 				9819A62C1920058300769705 /* BCMutableMeshTransform+Convenience.h */,
 				9819A62D1920058300769705 /* BCMutableMeshTransform+Convenience.m */,
 			);
@@ -270,8 +293,10 @@
 			files = (
 				9819A6351920058300769705 /* BCMeshTransform+Interpolation.m in Sources */,
 				9819A6341920058300769705 /* BCMeshTransform.mm in Sources */,
+				0A37D16D193B714900B49F18 /* RelativeMeshTransformAnimation.m in Sources */,
 				9819A64919200E6E00769705 /* BCMeshTransform+DemoTransforms.m in Sources */,
 				9819A6371920058300769705 /* BCMeshTransformView.m in Sources */,
+				0A37D16E193B714900B49F18 /* BCMutableMeshTransform+Relative.m in Sources */,
 				9819A6411920072800769705 /* BCDemoTableViewController.m in Sources */,
 				9819A6161920036500769705 /* BCDemoViewController.m in Sources */,
 				9819A6311920058300769705 /* BCMeshShader.m in Sources */,
@@ -279,6 +304,7 @@
 				9819A6331920058300769705 /* BCMeshTexture.m in Sources */,
 				985F8D94192297340090D0D7 /* BCJellyDemoViewController.m in Sources */,
 				9819A5E61920020400769705 /* main.m in Sources */,
+				0A37D16F193B714900B49F18 /* BCMeshTransform+Relative.m in Sources */,
 				985F8D91192149320090D0D7 /* BCMeshBuffer.m in Sources */,
 				9819A63E1920061000769705 /* BCCurtainDemoViewController.m in Sources */,
 				9819A63B192005FC00769705 /* BCZoomDemoViewController.m in Sources */,
