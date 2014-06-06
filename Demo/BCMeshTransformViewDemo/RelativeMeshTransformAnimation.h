@@ -7,8 +7,9 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+@class BCMeshTransform;
 
-@interface RelativeMeshTransformAnimation : CAAnimation
-@property (copy) id fromValue;
+@interface RelativeMeshTransformAnimation : CABasicAnimation
 @property (copy) double (^timingBlock)(double);
+@property (copy) BCMeshTransform*(^meshBlock)(double);
 @end

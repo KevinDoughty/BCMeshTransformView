@@ -8,10 +8,11 @@
 
 #import "BCDemoTableViewController.h"
 
-#import "BCZoomDemoViewController.h"
+//#import "BCZoomDemoViewController.h"
 #import "BCCurtainDemoViewController.h"
 #import "BCJellyDemoViewController.h"
-
+#import "RelativeZoomDemoViewController.h"
+#import "RelativeWaveDemoViewController.h"
 
 static NSString * const BCNameKey = @"name";
 static NSString * const BCClassKey = @"class";
@@ -35,8 +36,10 @@ static NSString * const BCCellReuseIdentifier = @"BCCellReuseIdentifier";
         self.demoViewControllersDicts =
         @[
           @{BCNameKey: @"Curtain", BCClassKey : [BCCurtainDemoViewController class]},
-          @{BCNameKey: @"Zoom", BCClassKey : [BCZoomDemoViewController class]},
-          @{BCNameKey: @"Jelly",  BCClassKey : [BCJellyDemoViewController class]},
+          //@{BCNameKey: @"Zoom", BCClassKey : [BCZoomDemoViewController class]},
+          //@{BCNameKey: @"Jelly",  BCClassKey : [BCJellyDemoViewController class]},
+          @{BCNameKey: @"Zoom",  BCClassKey : [RelativeZoomDemoViewController class]}, // Pinch gesture for scale, added by Kevin Doughty
+          @{BCNameKey: @"Wave",  BCClassKey : [RelativeWaveDemoViewController class]}, // Shows explicit animation using meshBlock, added by Kevin Doughty
           ];
     }
     return self;

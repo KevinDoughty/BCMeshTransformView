@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		0A37D16D193B714900B49F18 /* RelativeMeshTransformAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A37D167193B714900B49F18 /* RelativeMeshTransformAnimation.m */; };
 		0A37D16E193B714900B49F18 /* BCMutableMeshTransform+Relative.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A37D169193B714900B49F18 /* BCMutableMeshTransform+Relative.m */; };
-		0A37D16F193B714900B49F18 /* BCMeshTransform+Relative.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A37D16B193B714900B49F18 /* BCMeshTransform+Relative.m */; };
+		0A68D26019424AB00036C228 /* RelativeWaveDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A68D25F19424AB00036C228 /* RelativeWaveDemoViewController.m */; };
+		0A68D26419424FE70036C228 /* BCMeshTransform+Relative.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A68D26319424FE70036C228 /* BCMeshTransform+Relative.m */; };
+		0A68D267194252F60036C228 /* RelativeZoomDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A68D266194252F60036C228 /* RelativeZoomDemoViewController.m */; };
 		9819A5DA1920020400769705 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9819A5D91920020400769705 /* Foundation.framework */; };
 		9819A5DC1920020400769705 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9819A5DB1920020400769705 /* CoreGraphics.framework */; };
 		9819A5DE1920020400769705 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9819A5DD1920020400769705 /* UIKit.framework */; };
@@ -43,8 +45,12 @@
 		0A37D167193B714900B49F18 /* RelativeMeshTransformAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeMeshTransformAnimation.m; sourceTree = "<group>"; };
 		0A37D168193B714900B49F18 /* BCMutableMeshTransform+Relative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BCMutableMeshTransform+Relative.h"; sourceTree = "<group>"; };
 		0A37D169193B714900B49F18 /* BCMutableMeshTransform+Relative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BCMutableMeshTransform+Relative.m"; sourceTree = "<group>"; };
-		0A37D16A193B714900B49F18 /* BCMeshTransform+Relative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BCMeshTransform+Relative.h"; sourceTree = "<group>"; };
-		0A37D16B193B714900B49F18 /* BCMeshTransform+Relative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BCMeshTransform+Relative.m"; sourceTree = "<group>"; };
+		0A68D25E19424AB00036C228 /* RelativeWaveDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeWaveDemoViewController.h; sourceTree = "<group>"; };
+		0A68D25F19424AB00036C228 /* RelativeWaveDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeWaveDemoViewController.m; sourceTree = "<group>"; };
+		0A68D26219424FE70036C228 /* BCMeshTransform+Relative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BCMeshTransform+Relative.h"; sourceTree = "<group>"; };
+		0A68D26319424FE70036C228 /* BCMeshTransform+Relative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BCMeshTransform+Relative.m"; sourceTree = "<group>"; };
+		0A68D265194252F60036C228 /* RelativeZoomDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeZoomDemoViewController.h; sourceTree = "<group>"; };
+		0A68D266194252F60036C228 /* RelativeZoomDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeZoomDemoViewController.m; sourceTree = "<group>"; };
 		9819A5D61920020400769705 /* BCMeshTransformViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BCMeshTransformViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9819A5D91920020400769705 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9819A5DB1920020400769705 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -111,16 +117,31 @@
 		0A37D163193B713F00B49F18 /* Relative */ = {
 			isa = PBXGroup;
 			children = (
-				9819A62A1920058300769705 /* BCMeshTransformView.h */,
-				9819A62B1920058300769705 /* BCMeshTransformView.m */,
 				0A37D166193B714900B49F18 /* RelativeMeshTransformAnimation.h */,
 				0A37D167193B714900B49F18 /* RelativeMeshTransformAnimation.m */,
 				0A37D168193B714900B49F18 /* BCMutableMeshTransform+Relative.h */,
 				0A37D169193B714900B49F18 /* BCMutableMeshTransform+Relative.m */,
-				0A37D16A193B714900B49F18 /* BCMeshTransform+Relative.h */,
-				0A37D16B193B714900B49F18 /* BCMeshTransform+Relative.m */,
+				0A68D25E19424AB00036C228 /* RelativeWaveDemoViewController.h */,
+				0A68D25F19424AB00036C228 /* RelativeWaveDemoViewController.m */,
+				0A68D265194252F60036C228 /* RelativeZoomDemoViewController.h */,
+				0A68D266194252F60036C228 /* RelativeZoomDemoViewController.m */,
 			);
 			name = Relative;
+			sourceTree = "<group>";
+		};
+		0A68D26119424D900036C228 /* Modified */ = {
+			isa = PBXGroup;
+			children = (
+				9819A62A1920058300769705 /* BCMeshTransformView.h */,
+				9819A62B1920058300769705 /* BCMeshTransformView.m */,
+				9819A63F1920072800769705 /* BCDemoTableViewController.h */,
+				9819A6401920072800769705 /* BCDemoTableViewController.m */,
+				9819A6141920036500769705 /* BCDemoViewController.h */,
+				9819A6151920036500769705 /* BCDemoViewController.m */,
+				0A68D26219424FE70036C228 /* BCMeshTransform+Relative.h */,
+				0A68D26319424FE70036C228 /* BCMeshTransform+Relative.m */,
+			);
+			name = Modified;
 			sourceTree = "<group>";
 		};
 		9819A5CD1920020400769705 = {
@@ -156,12 +177,11 @@
 			isa = PBXGroup;
 			children = (
 				0A37D163193B713F00B49F18 /* Relative */,
+				0A68D26119424D900036C228 /* Modified */,
 				9819A6191920054300769705 /* BCMeshTransformView */,
 				9819A64A19200E7000769705 /* Demo View Controllers */,
 				9819A5E81920020400769705 /* BCAppDelegate.h */,
 				9819A5E91920020400769705 /* BCAppDelegate.m */,
-				9819A63F1920072800769705 /* BCDemoTableViewController.h */,
-				9819A6401920072800769705 /* BCDemoTableViewController.m */,
 				9819A64719200E6E00769705 /* BCMeshTransform+DemoTransforms.h */,
 				9819A64819200E6E00769705 /* BCMeshTransform+DemoTransforms.m */,
 				9819A64519200BC400769705 /* picture@2x.jpg */,
@@ -211,8 +231,6 @@
 		9819A64A19200E7000769705 /* Demo View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9819A6141920036500769705 /* BCDemoViewController.h */,
-				9819A6151920036500769705 /* BCDemoViewController.m */,
 				9819A63C1920061000769705 /* BCCurtainDemoViewController.h */,
 				9819A63D1920061000769705 /* BCCurtainDemoViewController.m */,
 				9819A639192005FC00769705 /* BCZoomDemoViewController.h */,
@@ -299,12 +317,14 @@
 				0A37D16E193B714900B49F18 /* BCMutableMeshTransform+Relative.m in Sources */,
 				9819A6411920072800769705 /* BCDemoTableViewController.m in Sources */,
 				9819A6161920036500769705 /* BCDemoViewController.m in Sources */,
+				0A68D267194252F60036C228 /* RelativeZoomDemoViewController.m in Sources */,
+				0A68D26019424AB00036C228 /* RelativeWaveDemoViewController.m in Sources */,
 				9819A6311920058300769705 /* BCMeshShader.m in Sources */,
 				9819A6361920058300769705 /* BCMeshTransformAnimation.m in Sources */,
 				9819A6331920058300769705 /* BCMeshTexture.m in Sources */,
 				985F8D94192297340090D0D7 /* BCJellyDemoViewController.m in Sources */,
+				0A68D26419424FE70036C228 /* BCMeshTransform+Relative.m in Sources */,
 				9819A5E61920020400769705 /* main.m in Sources */,
-				0A37D16F193B714900B49F18 /* BCMeshTransform+Relative.m in Sources */,
 				985F8D91192149320090D0D7 /* BCMeshBuffer.m in Sources */,
 				9819A63E1920061000769705 /* BCCurtainDemoViewController.m in Sources */,
 				9819A63B192005FC00769705 /* BCZoomDemoViewController.m in Sources */,

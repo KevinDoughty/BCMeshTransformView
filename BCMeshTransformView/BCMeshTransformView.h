@@ -9,6 +9,7 @@
 
 #import "BCMeshTransform.h"
 #import "BCMutableMeshTransform+Convenience.h"
+@class RelativeMeshTransformAnimation;
 
 @interface BCMeshTransformView : UIView
 
@@ -35,5 +36,11 @@
 // Supplementary transform applied to mesh vertices. Can be used to apply perspective transform.
 // Defualts to CATransform3DIdentity.
 @property (nonatomic) CATransform3D supplementaryTransform;
+
+
+// Manual animation management added by Kevin Doughty:
+-(void)addMeshAnimation:(RelativeMeshTransformAnimation*)animation forKey:(NSString*)key;
+-(void)removeMeshAnimationForKey:(NSString*)key;
+-(void)removeAllMeshAnimations;
 
 @end
