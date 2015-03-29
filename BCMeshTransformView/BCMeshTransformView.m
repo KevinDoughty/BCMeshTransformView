@@ -16,7 +16,9 @@
 #import "BCMeshBuffer.h"
 #import "BCMeshTexture.h"
 
-#import "BCMeshTransformAnimation.h"
+//#import "BCMeshTransformAnimation.h"
+#import "RelativeMeshTransformAnimation.h"
+#import "BCMutableMeshTransform+Relative.h"
 
 #import "BCMutableMeshTransform+Convenience.h"
 
@@ -29,7 +31,7 @@
 @property (nonatomic, strong) BCMeshTexture *texture;
 
 @property (nonatomic, strong) CADisplayLink *displayLink;
-@property (nonatomic, strong) BCMeshTransformAnimation *animation;
+//@property (nonatomic, strong) BCMeshTransformAnimation *animation;
 
 @property (nonatomic, copy) BCMeshTransform *presentationMeshTransform;
 
@@ -39,6 +41,9 @@
 
 @end
 
+@interface RelativeMeshTransformAnimation ()
+-(BCMeshTransform *)relativeInterpolate:(NSTimeInterval)now;
+@end
 
 @implementation BCMeshTransformView
 
@@ -129,7 +134,7 @@
 }
 
 #pragma mark - Setters
-
+/*
 - (void)setMeshTransform:(BCMeshTransform *)meshTransform
 {
 	// If we're inside an animation block, then we change properties of
@@ -154,7 +159,7 @@
 	
 	_meshTransform = [meshTransform copy];
 }
-
+*/
 - (void)setPresentationMeshTransform:(BCMeshTransform *)presentationMeshTransform
 {
 	_presentationMeshTransform = [presentationMeshTransform copy];
@@ -181,7 +186,7 @@
 	_supplementaryTransform = supplementaryTransform;
 	[self.glkView setNeedsDisplay];
 }
-
+/*
 - (void)setAnimation:(BCMeshTransformAnimation *)animation
 {
 	if (animation) {
@@ -189,7 +194,7 @@
 	}
 	_animation = animation;
 }
-
+*/
 - (void)setNeedsContentRendering
 {
 	if (self.pendingContentRendering == NO) {
@@ -215,7 +220,7 @@
 
 
 #pragma mark - Animation Handling
-
+/*
 - (void)displayLinkTick:(CADisplayLink *)displayLink
 {
 	[self.animation tick:displayLink.duration];
@@ -231,7 +236,7 @@
 		self.displayLink.paused = YES;
 	}
 }
-
+*/
 
 #pragma mark - OpenGL Handling
 
@@ -366,6 +371,7 @@
 
 
 
+
 // The following was added by Kevin Doughty:
 #pragma mark - Relative
 
@@ -441,5 +447,4 @@
 	self.presentationMeshTransform = mutableMesh;
 	if (animationCount == 0) self.displayLink.paused = YES;
 }
-
 @end
