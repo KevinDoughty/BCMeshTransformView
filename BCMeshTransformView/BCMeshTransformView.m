@@ -364,4 +364,82 @@
 	NSLog(@"Warning: do not add a subview directly to BCMeshTransformView. Add it to contentView instead.");
 }
 
+
+
+// The following was added by Kevin Doughty:
+#pragma mark - Relative
+
+-(NSString*)relativeAnimationKey {
+	return @"relativeMeshAnimation";
+}
+-(void)addMeshAnimation:(RelativeMeshTransformAnimation*)animation forKey:(NSString*)key {
+	static NSUInteger nilKeyCount = 0;
+	if (key == nil) key = [NSString stringWithFormat:@"%@_nilKey%lu_",[self relativeAnimationKey],(unsigned long)nilKeyCount++];
+	[self.layer addAnimation:animation forKey:key];
+	self.displayLink.paused = NO;
+}
+-(void)removeMeshAnimationForKey:(NSString*)key {
+	[self.layer removeAnimationForKey:key];
+}
+-(void)removeAllMeshAnimations {
+	[self.layer removeAllAnimations];
+}
+- (id < CAAction >)actionForLayer:(CALayer *)layer forKey:(NSString *)key {
+	if ([key isEqualToString:[self relativeAnimationKey]]) {
+		return [self.layer.actions objectForKey:[self relativeAnimationKey]];
+	}
+	return [super actionForLayer:layer forKey:key];
+}
+
+- (void)setMeshTransform:(BCMeshTransform *)meshTransform {
+	BOOL disabled = [CATransaction disableActions];
+	[CATransaction begin];
+	CABasicAnimation *underlyingMeshAnimation = [CABasicAnimation animation];
+	underlyingMeshAnimation.fromValue = meshTransform;
+	underlyingMeshAnimation.toValue = meshTransform;
+	underlyingMeshAnimation.removedOnCompletion = NO;
+	[self.layer addAnimation:underlyingMeshAnimation forKey:[self relativeAnimationKey]];
+	
+	if (!disabled && _meshTransform.vertexCount == meshTransform.vertexCount) { // !disabled fails. redraw happens inside transaction when presentationMeshTransform is set.
+		CAAnimation *action = (CAAnimation*)[self.layer actionForKey:[self relativeAnimationKey]];
+		if ([action isKindOfClass:[RelativeMeshTransformAnimation class]]) {
+			RelativeMeshTransformAnimation *anim = (RelativeMeshTransformAnimation*)action;
+			BCMutableMeshTransform *fromMesh = _meshTransform.mutableCopy;
+			[fromMesh subtractMesh:meshTransform];
+			anim.fromValue = fromMesh; // absolute or relative? I'm merging implicit & explicit.
+			
+			static NSUInteger animationCount = 0;
+			NSString *animKey = [NSString stringWithFormat:@"%@%lu",[self relativeAnimationKey],(unsigned long)animationCount++];
+			[self.layer addAnimation:anim forKey:animKey]; // maybe the animation isn't getting added before display link tick, perhaps because of transaction?
+			self.displayLink.paused = NO;
+		} else if (self.displayLink.paused) self.presentationMeshTransform = meshTransform;
+	} else  if (self.displayLink.paused) self.presentationMeshTransform = meshTransform;
+	
+	_meshTransform = [meshTransform copy];
+	[CATransaction commit];
+}
+
+- (void)displayLinkTick:(CADisplayLink *)displayLink {
+	
+	NSArray *keys = [self.layer animationKeys];
+	NSUInteger animationCount = 0;
+	double now = CACurrentMediaTime();
+	
+	CABasicAnimation *underlyingMesh = (CABasicAnimation*)[self.layer animationForKey:[self relativeAnimationKey]];
+	BCMeshTransform *immutableMesh = (BCMeshTransform*)underlyingMesh.toValue;
+	BCMutableMeshTransform *mutableMesh = immutableMesh.mutableCopy;
+	
+	for (NSString *key in keys) {
+		CAAnimation *anim = [self.layer animationForKey:key];
+		if ([anim isKindOfClass:[RelativeMeshTransformAnimation class]]) {
+			RelativeMeshTransformAnimation *animation = (RelativeMeshTransformAnimation*)anim;
+			animationCount++;
+			BCMeshTransform *presentationMesh = [animation relativeInterpolate:now];
+			if (presentationMesh) [mutableMesh addMesh:presentationMesh];
+		}
+	}
+	self.presentationMeshTransform = mutableMesh;
+	if (animationCount == 0) self.displayLink.paused = YES;
+}
+
 @end
